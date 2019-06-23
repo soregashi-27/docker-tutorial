@@ -9,9 +9,9 @@ Vagrant.configure("2") do |config|
   end
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
+    apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl software-properties-common jq build-essential tree
 
     # setup docker
-    apt-get install apt-transport-https ca-certificates curl software-properties-common jq
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     apt-get update
@@ -24,9 +24,11 @@ Vagrant.configure("2") do |config|
 
     # setup golang
     snap install go --classic
-
-    # others
-    apt-get install -y jq tree
+    cat <<EOF >> /home/vagrant/.bashrc
+export GOPATH=/home/vagrant/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GO111MODULE=on
+EOF
 
   SHELL
 end
