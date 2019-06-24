@@ -1,0 +1,20 @@
+version: '3'
+services:
+  etcd:
+    container_name: etcd
+    image: quay.io/cybozu/etcd:3.3
+    ports:
+      - 2379
+    volumes:
+      - etcd-data:/var/lib/etcd
+    command:
+      - --advertise-client-urls=http://0.0.0.0:2379
+      - --listen-client-urls=http://0.0.0.0:2379
+  todo:
+    container_name: todo
+    image: todo:v1
+    ports:
+      - 9000:9000
+
+volumes:
+  etcd-data:
