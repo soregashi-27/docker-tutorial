@@ -2,6 +2,7 @@ module server
 
 go 1.13
 
+// https://github.com/etcd-io/etcd/pull/11564#issuecomment-624812860
 replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
 
 require (
