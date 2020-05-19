@@ -17,13 +17,13 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "Hello World\n")
+		io.WriteString(w, "Best Practice!\n")
 	})
 
 	// Graceful Shutdownの確認用に重たいリクエストを模擬
 	mux.HandleFunc("/heavy", func(w http.ResponseWriter, r *http.Request) {
-		time.Sleep(10 * time.Second)
-		io.WriteString(w, "Hello World\n")
+		time.Sleep(30 * time.Second)
+		io.WriteString(w, "Heavy Request!\n")
 	})
 
 	// ヘルスチェック用のエンドポイント
