@@ -1,4 +1,6 @@
 # training-docker
+Practice running Docker for develop.
+
 
 ## Vagrant
 
